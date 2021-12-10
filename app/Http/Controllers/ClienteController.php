@@ -57,11 +57,11 @@ class ClienteController extends Controller
             return ExceptionsDataAPI::success(
                 200, $sucessoCliente
             );
-        } catch (\Exception $e) {    
+        } catch (\Exception $ex) {    
                  
-            Log::info($e);
+            Log::info($ex);
             return ExceptionsDataAPI::error(
-                500, $e
+                500, $ex
             );
         }
 
