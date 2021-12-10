@@ -55,13 +55,13 @@ class ClienteController extends Controller
             $sucessoCliente = $cliente->create($request->all());
          
             return ExceptionsDataAPI::success(
-                200, $dadsucessoClienteos
+                200, $sucessoCliente
             );
         } catch (\Exception $e) {    
                  
             Log::info($e);
             return ExceptionsDataAPI::error(
-                500, $ex
+                500, $e
             );
         }
 
