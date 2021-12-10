@@ -15,9 +15,9 @@ use App\Http\Controllers\DocumentoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 Route::resource('/documentos-web', DocumentoController::class);

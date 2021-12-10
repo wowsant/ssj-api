@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Exceptions\ExceptionsDataAPI;
+
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 class ClienteController extends Controller
 {
@@ -38,22 +43,28 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nome' => 'required',
-            'cpf' => 'required',
-            'email' => 'required',
-            'wpp' => 'required',
-            'telefone' => 'required',
-            'celular' => 'required'
-        ]);
+        $cliente = new Cliente();
+        if ($this->requestDataValidation($request, $cliente->regrasInsert)) {
+            return ExceptionsDataAPI::error(
+                406, $this->requestDataValidation($request, $cliente->regrasInsert)
+            );
+        }
 
-        Cliente::create($request->all());
-     
-        return redirect()
-            ->route('cliente.index')
-            ->with(
-                'success','O Cliente foi cadastrado com suceesso'
-        );
+        try {
+
+            $sucessoCliente = $cliente->create($request->all());
+         
+            return ExceptionsDataAPI::success(
+                200, $dadsucessoClienteos
+            );
+        } catch (\Exception $e) {    
+                 
+            Log::info($e);
+            return ExceptionsDataAPI::error(
+                500, $ex
+            );
+        }
+
     }
 
     /**

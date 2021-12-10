@@ -18,9 +18,9 @@ use App\Http\Controllers\ClienteController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::resource('/documentos', DocumentoController::class);
 Route::resource('/cliente', ClienteController::class);

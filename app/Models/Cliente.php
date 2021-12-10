@@ -17,4 +17,10 @@ class Cliente extends Model
         'celular'
     ];
 
+    public $regrasInsert = [
+        'nome'     => 'required|max:255',
+        'email'    => 'required|max:255|email',
+        'celular'  => 'required'
+    ]; 
+
 }
