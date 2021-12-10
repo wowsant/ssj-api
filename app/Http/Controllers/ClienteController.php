@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Documento;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -47,10 +47,10 @@ class ClienteController extends Controller
             'celular' => 'required'
         ]);
 
-        Client::create($request->all());
+        Cliente::create($request->all());
      
         return redirect()
-            ->route('client.index')
+            ->route('cliente.index')
             ->with(
                 'success','O Cliente foi cadastrado com suceesso'
         );
