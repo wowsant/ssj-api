@@ -50,20 +50,13 @@ class ClienteController extends Controller
             );
         }
 
-        try {
-
-            $sucessoCliente = $cliente->create($request->all());
+       
+             $cliente->create($request->all());
          
             return ExceptionsDataAPI::success(
-                200, $sucessoCliente
+                200
             );
-        } catch (\Exception $ex) {    
-                 
-            Log::info($ex);
-            return ExceptionsDataAPI::error(
-                500, $ex
-            );
-        }
+       
 
     }
 
