@@ -38,8 +38,22 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        print_r("store");
-        //
+        $request->validate([
+            'nome' => 'required',
+            'cpf' => 'required',
+            'email' => 'required',
+            'wpp' => 'required',
+            'telefone' => 'required',
+            'celular' => 'required'
+        ]);
+
+        Client::create($request->all());
+     
+        return redirect()
+            ->route('client.index')
+            ->with(
+                'success','O Cliente foi cadastrado com suceesso'
+        );
     }
 
     /**
